@@ -15,7 +15,7 @@ export enum Colors {
     GREEN = 2,
 }
 
-export function check_input(input_str: string, correct_word: string): ColoredLetter[];
+export function check_input(input_str: string, correct_word: string): any;
 
 export function get_new_word(): string;
 
@@ -28,16 +28,15 @@ export interface InitOutput {
     readonly __wbg_get_coloredletter_letter: (a: number) => number;
     readonly __wbg_set_coloredletter_color: (a: number, b: number) => void;
     readonly __wbg_set_coloredletter_letter: (a: number, b: number) => void;
-    readonly check_input: (a: number, b: number, c: number, d: number) => [number, number];
+    readonly check_input: (a: number, b: number, c: number, d: number) => any;
     readonly coloredletter_new: (a: number, b: number) => number;
     readonly get_new_word: () => [number, number];
     readonly main: (a: number, b: number) => number;
+    readonly __wbindgen_malloc: (a: number, b: number) => number;
+    readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
     readonly __wbindgen_exn_store: (a: number) => void;
     readonly __externref_table_alloc: () => number;
     readonly __wbindgen_externrefs: WebAssembly.Table;
-    readonly __wbindgen_malloc: (a: number, b: number) => number;
-    readonly __wbindgen_realloc: (a: number, b: number, c: number, d: number) => number;
-    readonly __externref_drop_slice: (a: number, b: number) => void;
     readonly __wbindgen_free: (a: number, b: number, c: number) => void;
     readonly __wbindgen_start: () => void;
 }

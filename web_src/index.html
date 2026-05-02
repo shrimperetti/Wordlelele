@@ -17,12 +17,17 @@
     <!-- Same thing but more common/neater -->
     <div id="input_container">
         <input type="text" name="input_str" id="input_str" placeholder="Type a word" title="Type here a word">
-        <button onclick="check_attempt">Sit e basta però non ci sta</button>
+        <button id="submit">Sit e basta però non ci sta</button>
         <p id="guessed"></p>
         <p id="almost_guessed"></p>
     </div>
 
     <script type="module" src="rust_wordle.js"></script>
     <script type="module" src="app.js"></script>
+
+    <script type="module">
+        import { check_attempt } from './app.js';
+        document.getElementById('submit').addEventListener('click', check_attempt);
+    </script>
 </body>
 </html>

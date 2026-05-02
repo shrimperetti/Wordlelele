@@ -3,11 +3,12 @@ use std::{iter::zip, vec};
 use rand::prelude::{IndexedRandom};
 use serde::ser::{Serialize, SerializeStruct};
 use serde_repr::*;
+use wasm_bindgen::JsValue;
 
 /*
     Deployment steps:
         - compile it for wasm -> cargo build --target wasm32-unknown-unknown --release
-        - translate to js package -> wasm-bindgen --target web  ./target/wasm32-unknown-unknown/release/rust_wordle.wasm   --out-dir ./pkg
+        - translate to js package -> wasm-bindgen --target web  ./target/wasm32-unknown-unknown/release/rust_wordle.wasm   --out-dir ./web_src
         - serve the files -> sfz ./src/pkg/
 */
 
@@ -58,7 +59,7 @@ impl Serialize for ColoredLetter {
 
 // https://wasm-bindgen.github.io/wasm-bindgen/reference/types/boxed-slices.html
 #[wasm_bindgen]
-pub fn check_input(input_str: &str, correct_word: &str) -> Vec<ColoredLetter> {
+pub fn check_input(input_str: &str, correct_word: &str) -> JsValue {
     let mut result: Vec<ColoredLetter> = vec![];
     
     for (a, b) in zip(input_str.chars(), correct_word.chars()) {
@@ -71,7 +72,7 @@ pub fn check_input(input_str: &str, correct_word: &str) -> Vec<ColoredLetter> {
         }
     }
 
-    result
+    serde_wasm_bindgen::to_value(&result).unwrap()
 }
 #[test]
 fn test_check_input() {
