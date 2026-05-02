@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> </title>
+</head>
+<body>
+    <!-- Group and get a set of inputs (dictionary-like) -->
+    <!-- <form action="">
+        <label for="input_str">Try to guess</label>
+        <input type="text" name="input_str" placeholder="input_str">
+        <input type="button" value="">
+    </form> -->
+    
+    <!-- Same thing but more common/neater -->
+    <div id="input_container">
+        <input type="text" name="input_str" id="input_str" placeholder="Type a word" title="Type here a word">
+        <button onclick="check_attempt">Sit e basta però non ci sta</button>
+        <p id="guessed"></p>
+        <p id="almost_guessed"></p>
+    </div>
+
+    <script>
+        var w_to_guess;
+        const input_str = document.getElementById("input_str");
+
+        window.onload = ()=>{
+            // get the word to find
+            // show the input_container div
+            w_to_guess = get_new_word();
+        };
+        
+        function check_attempt(){
+            let check_result = check_input(input_str.value(), w_to_guess);
+            console.debug("received result: " + check_result);
+            let result_obj = JSON.parse(check_result);
+            console.debug("parsed result: " + result_obj);
+        }
+
+    </script>
+</body>
+</html>
