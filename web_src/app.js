@@ -1,9 +1,19 @@
+import init, {get_new_word, check_input} from "./rust_wordle.js"
+
+/*
+Uncaught SyntaxError: await is a reserved identifier
+
+la sssigla
+Siignoooova
+*/
+
 let w_to_guess;
 const input_str = document.getElementById("input_str");
 
-window.onload = () => {
+window.onload = async () => {
     // get the word to find
     // show the input_container div
+    await init();
     w_to_guess = get_new_word();
 };
 
