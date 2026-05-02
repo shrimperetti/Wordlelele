@@ -1,12 +1,19 @@
 use wasm_bindgen::prelude::*;
 use std::{iter::zip, vec};
-use rand::prelude::IndexedRandom;
+use rand::prelude::{IndexedRandom};
 use serde::ser::{Serialize, SerializeStruct};
 use serde_repr::*;
 
+/*
+    Deployment steps:
+        - compile it for wasm -> cargo build --target wasm32-unknown-unknown --release
+        - translate to js package -> wasm-bindgen --target web  ./target/wasm32-unknown-unknown/release/rust_wordle.wasm   --out-dir ./pkg
+        - serve the files -> sfz ./src/pkg/
+*/
+
 // https://serde.rs/enum-number.html
 #[derive(Serialize_repr, Deserialize_repr, PartialEq, Debug, Clone, Copy)]
-#[repr(u8)] 
+#[repr(u8)]
 #[wasm_bindgen]
 pub enum Colors {
     GREY = 0,
